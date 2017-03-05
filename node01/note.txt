@@ -1,0 +1,23 @@
+1.Hellow world
+    打开编辑器，在其中输入：console.log("Heollo World!");
+    保存为helloworld.js,打开dos窗口进入该文件的目录，
+     执行node helloworld.js则可以看到输出：Heollo World!
+2.Node.js命令行工具
+    （1）node -v (版本 )
+    （2）node -e (eval script)
+    举例：
+         node -e "console.log("你好，nodejs")"
+         执行上面的命令，界面输出：你好，nodejs
+    （3）node  (直接进入编译模式，第一行是输入，第二行是返回值)
+    举例：
+         node 回车
+         console.log("编译模式");回车
+3.建立HTTP服务器
+    var http = require('http');
+    http.createServer(function(req,res){
+        console.log('http server.....');
+        res.writeHead(200,{'Content-Type':'text/html'});
+        res.write('<h1>http server</h1>');
+        res.end();
+    }).listen(3000);
+    执行node server.js，在浏览器url上输入http://localhost:3000即可看到效果
