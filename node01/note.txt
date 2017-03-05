@@ -21,3 +21,9 @@
         res.end();
     }).listen(3000);
     执行node server.js，在浏览器url上输入http://localhost:3000即可看到效果
+4.调试代码
+    问题：当我们修改了代码就需要CTRL+C停止当前服务，然后再重启服务（及node server.js），这样不利于调试
+    解决办法：
+         安装 npm install -supervisor -g
+         每次修改后不需要重启服务器(及执行node server.js)
+         执行 supervisor server.js一次即可
