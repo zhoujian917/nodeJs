@@ -1,0 +1,6 @@
+node安装
+1.windows 安转
+    https://nodejs.org下载，一路回车即可
+    打开dos命令窗口，输入node -v 输出版本号及安装正确
+
+2.mac安装
