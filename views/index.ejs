@@ -1,119 +1,246 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>周健的个人博客</title>
+<title>周健的博客</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="/css/front/style.css" rel="stylesheet" type="text/css" />
-<script language="javascript" type="text/javascript">
-function clearText(field)
-{
-    if (field.defaultValue == field.value) field.value = '';
-    else if (field.value == '') field.value = field.defaultValue;
-}
-</script>
+<link href="css/templatemo_style.css" rel="stylesheet" type="text/css" />
+
+<link href="css/svwp_style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="js/jquery.slideViewerPro.1.0.js" type="text/javascript"></script>
+
+<!-- Optional plugins  -->
+<script src="js/jquery.timers.js" type="text/javascript"></script>
+
+
 </head>
 <body>
-<%include header.ejs%>
+
+<div id="templatemo_top_wrapper">
+	<div id="templatemo_top">
+    	<!--<ul id="social_box">
+            <li><a href="#"><img src="images/facebook.png" alt="facebook" /></a></li>
+            <li><a href="#"><img src="images/twitter.png" alt="twitter" /></a></li>
+            <li><a href="#"><img src="images/linkedin.png" alt="linkin" /></a></li>
+            <li><a href="#"><img src="images/technorati.png" alt="technorati" /></a></li>
+            <li><a href="#"><img src="images/myspace.png" alt="myspace" /></a></li>
+        </ul>-->
+        <ul id="social_box">
+            <%if(locals.login != undefined ){%>
+                 <li><%-locals.login%>，您好</li>
+                 <li><a href="/logout">登出</a></li>
+            <% }else{ %>
+                <li><a href="/login">登录</a>|<a href="/register">注册</a></li>
+            <%}%>
+        </ul>
+
+    </div>
+</div>
+
+<div id="templatemo_header_wrapper">
+	<div id="templatemo_header">
+    
+    	<div id="site_title">
+            <h1>
+                <a href="/">
+                    <img src="images/templatemo_logo.png" alt="logo" width="180" height="60" />
+                    <span>不服输的小蚂蚁</span></a>
+            </h1>
+        </div> <!-- end of site_title -->
+        
+    </div>
+</div> <!-- end of templatemo_header -->
 
 <div id="templatemo_menu_wrapper">
-    <div id="templatemo_menu">
+	<div id="templatemo_menu">
         <ul>
-            <li><a href="#" class="current">首页</a></li>
-            <li><a href="#">慢生活</a></li>
-            <li><a href="#">模板分享</a></li>
-            <li><a href="#">学无止境</a></li>
-            <li><a href="#" class="last">联系我</a></li>
+            <li><a href="/" class="current">主页</a></li>
+            <li><a href="/about">关于</a></li>
+            <li><a href="/gallery">文章</a></li>
+            <li><a href="/contact">联系我</a></li>
         </ul>    	
-    </div> <!-- end of menu -->
-</div> <!-- end of menu wrapper -->
+    </div> <!-- end of templatemo_menu -->
+</div>
 
-<div id="templatemo_content">
-	
-   	<div id="column_w540">
-        <!-- section start -->
-        <div class="post_section">
-            <div class="post_header_section">
-                <div class="post_header">
-                    即便是坑，我也想要拉你入伙！
+<div id="templatemo_middle_wrapper_outer">
+<div id="templatemo_middle_wrapper_inner">
+	<div id="templatemo_middle_top"></div>
+	<div id="templatemo_middle">
+    
+    	<div id="templatemo_content">
+        	
+            <div id="templatemo_slider">
+                <div id="featuredslideshow">
+                    <form action="search" method="post">
+                        <input type="text" name="search"/><input type="submit" value="搜索"/>
+                    </form>
+                    <ul> 
+                        <li><img width="600" height="300" alt="photo one" src="images/slideshow/01.jpg" /></li> 
+                        <li><img width="600" height="300" alt="photo two" src="images/slideshow/02.jpg" /></li> 
+                        <li><img width="600" height="300" alt="photo three" src="images/slideshow/03.jpg" /></li> 
+                        <li><img width="600" height="300" alt="photo four" src="images/slideshow/04.jpg" /></li> 
+                        <li><img width="600" height="300" alt="photo five" src="images/slideshow/05.jpg" /></li> 
+                        <!-- eccetera --> 
+                    </ul> 
                 </div>
-                <div class="post_info">发布时间：2016-05-20&nbsp;&nbsp;&nbsp;作者： <span>周健</span></div>
+                <script type="text/javascript">
+                     $("div#featuredslideshow").slideViewerPro({ 
+                    thumbs: 4,  
+                    thumbsPercentReduction: 15, 
+                    galBorderWidth: 0, 
+                    galBorderColor: "#666", 
+                    thumbsTopMargin: 10, 
+                    thumbsRightMargin: 10, 
+                    thumbsBorderWidth: 1, 
+                    thumbsActiveBorderColor: "#000", 
+                    thumbsActiveBorderOpacity: 0.8, 
+                    thumbsBorderOpacity: 0, 
+                    buttonsTextColor: "#707070", 
+                    autoslide: true,  
+                    typo: true 
+                    });  	
+                </script>
             </div>
-            <div class="templatemo_post_content">
-                <a href="#" class="item">
-                    <img src="/img/front/templatemo_image_01.jpg" alt="image" />
-                    <div class="info">
-                        女程序员的职业生涯相对于男程序员来说是很短暂的。就目前我来说，从事这行都已有五年时间，当觉得....
-                    </div>
-                </a>
+             
+            <div class="cleaner"></div>
+
+            <div class="post_box">
+        
+                <h2><a href="blog_post.html">Free CSS Template for everyone</a></h2>
+
+                <div class="post_meta"><strong>Date:</strong> May 18th, 2048 | <strong>Author:</strong> TemplateMo | <a href="blog_post">128 comments</a></div>
+                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                <p><em>Donec dapibus viverra est. Maecenas dignissim, quam a posuere scelerisque, ligula arcu dictum turpis, id tempus turpis erat at nulla.</em></p>
+                <p><a href="#">templatemo</a> features high quality <a href="#">free css templates</a> for your personal or commercial websites. Credits go to <a href="http://www.brusheezy.com/brush/1327-Midnight-City-Vector-Brushes" target="_blank">shiftyj</a> for vector brushes, <a href="http://jwloh.deviantart.com/art/Aquaticus-Social-91014249" target="_blank">jwloh</a> for Aquaticus Social icons and <a href="http://www.gcmingati.net/wordpress/wp-content/lab/jquery/svwt/" target="_blank">slideViewerPro</a> for JavaScripts slider.  This neo blog theme is absolutely free to download, modify and apply for your websites without any restriction. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus egestas diam quis dapibus. </p>
+                    
+              <div class="cleaner_h20"></div>
+                <div class="category"><strong>Category: </strong><a href="#">Freebies</a>, <a href="#">CSS Templates</a></div> <div class="btn_more float_r"><a href="blog_post.html">Read more <span>&raquo;</span></a></div>
                 <div class="cleaner"></div>
-                <div class="link_button"><a href="#">阅读全文</a> | <a href="#">评论(248)</a></div>
+    
+            </div>
+            
+           	<div class="post_box post_box_last">
+            
+                <h2><a href="blog_post.html">Web Design and Development Concepts</a></h2>
+
+               <div class="post_meta"><strong>Date:</strong> May 14th, 2048 | <strong>Author:</strong> TemplateMo | <a href="blog_post">256 comments</a></div>
+               <a href="#"><img src="images/templatemo_image_02.jpg" alt="image" /></a>
+                
+              <p>Cras id tortor nisl. Nullam ante diam, interdum sit amet sodales nec, mollis lobortis sapien. Vestibulum pharetra tortor vitae velit pretium rhoncus. Donec et purus velit, eget euismod risus. <a href="#">Integer consectetur</a> enim eget diam tincidunt vehicula. Aenean scelerisque tellus vitae tortor placerat egestas. Ut volutpat erat nec mauris vestibulum sit amet pharetra urna faucibus. Ut magna orci, varius eget ullamcorper ac, sodales id leo. In hac habitasse platea dictumst. <a href="#">Fusce venenatis</a> consequat lacinia. Vivamus elit erat, tincidunt eget scelerisque vitae.</p>
+                    
+                <div class="cleaner_h20"></div>
+                <div class="category"><strong>Category: </strong><a href="#">Web Design</a>, <a href="#">User Interfaces</a></div> <div class="btn_more float_r"><a href="blog_post.html">Read more <span>&raquo;</span></a></div>
+                <div class="cleaner"></div>
+    
+            </div>
+        
+        </div> <!-- end of content -->
+        
+        <div id="templatmeo_sidebar">
+        
+        	<div class="sidebar_box">
+                <ul class="ads_125">
+                    <li><a href="#"><img src="images/templatemo_ads.jpg" alt="CSS Templates" /></a></li>
+                    <li class="odd"><a href="#"><img src="images/templatemo_ads.jpg" alt="banner" /></a></li>
+                    <li class="last_row"><a href="#"><img src="images/templatemo_ads.jpg" alt="banner" /></a></li>
+                    <li class="odd last_row"><a href="#"><img src="images/templatemo_ads.jpg" alt="banner" /></a></li>
+                </ul>  
+                <div class="cleaner"></div>
+            </div>              
+            
+            <div class="sidebar_box">
+            	<h4>Categories</h4>
+                <ul class="tmo_list">
+                    <li><a href="index.html">Quisque dictum pharetra neque</a></li>
+                    <li><a href="index.html">Praesent sollicitudin mollis leo</a></li>
+                    <li><a href="index.html">Mauris et elit quis mauris aliquet</a></li>
+                    <li><a href="index.html">Donec a purus vel purus sollicitudin</a></li>
+                    <li><a href="index.html">Etiam in lorem ac nulla imperdiet</a></li>
+                    <li><a href="index.html">Phasellus in justo at lectus</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar_box">
+            	<h4>Recent Posts</h4>
+                <div class="recent_comment_box">
+                    <a href="#">Donec mattis egestas sem</a>
+                    <p>Mauris in sapien in massa pellentesque viverra. Phasellus in justo at lectus pulvinar ultrices. Validate <a href="http://validator.w3.org/check?uri=referer" rel="nofollow"><strong>XHTML</strong></a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer" rel="nofollow"><strong>CSS</strong></a>.</p>
+                </div>
+                
+                <div class="recent_comment_box">
+                    <a href="#">Aenean feugiat mattis </a>
+                    <p>Cras pretium sem sed odio. Vestibulum nisl mauris, malesuada nec, dictum in, molestie in, pede. </p>
+              </div>
+                
+                <div class="recent_comment_box">
+                    <a href="#">Quisque at nulla eu elit adipiscing</a>
+                    <p> Vestibulum ultrices. Pellentesque tempus sapien nec sem commodo ullamcorper. Aenean neque.</p>
+                </div>
+                
+                <div class="recent_comment_box">
+                    <a href="#">Morbi nec magna pulvinar</a>
+                    <p>Donec accumsan urna non elit tristique mattis. Vivamus fermentum orci viverra nisl. In nec magna id聽ipsum聽aliquam.</p>
+                </div>
+                
             </div>
             <div class="cleaner"></div>
-            <div class="post_section_bottom"></div>
+        
         </div>
-        <!-- section end -->
-        <!-- section start -->
-        <div class="post_section">
-            <div class="post_header_section">
-                <div class="post_header">
-                    如果要学习web前端开发，需要学习什么？
-                </div>
-                <div class="post_info">发布时间：2016-05-20&nbsp;&nbsp;&nbsp;作者： <span>周健</span></div>
-            </div>
-            <div class="templatemo_post_content">
-                <a href="#" class="item">
-                    <img src="/img/front/templatemo_image_01.jpg" alt="image" />
-                    <div class="info">
-                        遇到很多新手，都会问，如果要学习web前端开发，需要学习什么？难不难？多久能入门？怎么能快速建一个网站？
-                        工资能拿到多少？还有些让我推荐一些培训机构什么的要去学习。我建议是自学，实在是觉得自己没有这个能力，
-                        确实是需要一个老师的话，那你还是自己做主找个老师吧！
-                    </div>
-                </a>
-                <div class="cleaner"></div>
-                <div class="link_button"><a href="#">阅读全文</a> | <a href="#">评论(248)</a></div>
-            </div>
-            <div class="cleaner"></div>
-            <div class="post_section_bottom"></div>
-        </div>
-        <!-- section end -->
-        <div class="post_section">
-        	<div class="post_header_section">
-            	<div class="post_header">
-                    即便是坑，我也想要拉你入伙！
-                </div>
-                <div class="post_info">发布时间：2016-05-20&nbsp;&nbsp;&nbsp;作者： <span>周健</span></div>
-            </div>
-            <div class="templatemo_post_content">
-           	  	<a href="#" class="item">
-                    <img src="/img/front/templatemo_image_01.jpg" alt="image" />
-                    <div class="info">
-                        其实，女程序员的职业生涯相对于男程序员来说是很短暂的。就目前我来说，从事这行都已有五年时间，当觉得
-                        自己在一个瓶颈阶段无法突破自己的时候，出现了html5和css3，新的技术研究，可以重拾当初学习的激情和兴趣，
-                        于是又坚持至今....
-                    </div>
-                </a>
-                <div class="cleaner"></div>
-                <div class="link_button"><a href="#">阅读全文</a> | <a href="#">评论(248)</a></div>
-            </div>
-          <div class="cleaner"></div>
-            <div class="post_section_bottom"></div>
-        </div>
+   	
     	<div class="cleaner"></div>
-    </div>
-    <!--  side start  -->
-    <%include side.ejs%>
-    <!--   side end  -->
-	<div class="margin_bottom_20"></div>
-	<div id="bottom"></div>   
-</div> <!-- end of content -->
+    </div> <!-- end of templatemo_middle -->
+    <div id="templatemo_middle_bottom"></div>
 
-<%include footer.ejs%>
-<!-- templatemo 142 art blog -->
+	<div id="templatemo_footer">
+    
+        <div class="col_w310">
+            <h4>Our Pages</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html" class="last">Contact</a></li>
+            </ul>  
+ 
+        </div>
+        
+        <div class="col_w310">
+            <h4>Partners</h4>
+            <ul>
+                <li><a href="#">Flash Templates</a></li>
+                <li><a href="#">CSS Templates</a></li>
+                <li><a href="#">Flash Websites Gallery</a></li>
+                <li><a href="#">Premium Templates</a></li>
+            </ul>    
+ 
+        </div>
+        
+        <div class="col_w310">
+            <h4>About Us</h4>
+            <p>Integer consectetur enim eget diam tincidunt vehicula. Aenean scelerisque tellus vitae tortor placerat egestas. Ut volutpat erat nec mauris vestibulum sit amet pharetra urna.</p>
+            <div class="btn_more"><a href="about.html">Read more <span>&raquo;</span></a></div>
+ 
+        </div>
+        
+        
+        <div class="cleaner"></div>
+    </div> <!-- end of footer -->
+    
+</div>
+</div>
+
+<div id="templatemo_copyright_wrapper">
+    <div id="templatemo_copyright">
+    
+        Copyright 漏 2048 <a href="#">Your Company Name</a> <!-- Credit: www.templatemo.com -->
+    </div>
+</div>
+<!-- templatemo 298 neo blog -->
 <!-- 
-Art Blog Template 
-http://www.templatemo.com/preview/templatemo_142_art_blog 
+Neo Blog Template 
+http://www.templatemo.com/preview/templatemo_298_neo_blog 
 -->
 </body>
 </html>

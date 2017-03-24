@@ -9,7 +9,7 @@ module.exports = function(sql,params,cb) {
         username: "root",
         password: "",
         port: "3306",
-        database: "blog"
+        database: "test"
     })
     config.connect();
     config.query(sql,params, (err, data)=> {
