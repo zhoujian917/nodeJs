@@ -5,7 +5,9 @@ const http = require('http'),
     express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser');
-    app = express();
+    app = express(),
+        mysql = require('./module/mysql'),
+        session = require('express-session');
 
 //ejs模板设置
 app.set("views",__dirname+"/views");
@@ -20,18 +22,21 @@ app.use(express.static(__dirname+"/public"));
 
 //cookies 设置密钥
 app.use(cookieParser('zhoujian'));
+//session设置密钥
+app.use(session({secret:'zhoujian'}));
 
 app.use(function(req,res,next){
-    console.log();
+
     if(req.cookies['login']){
         res.locals.login = req.cookies.login.name;
     }
+
     // 继续往下执行
-    next()
+    next();
 
 })
 
 app.use("/",require('./router/index'));
 
-http.createServer(app).listen(3000);
+http.createServer(app).listen(8888);
 

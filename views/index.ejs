@@ -28,8 +28,12 @@
             <li><a href="#"><img src="images/myspace.png" alt="myspace" /></a></li>
         </ul>-->
         <ul id="social_box">
+            <%if(locals.admin == 1){%>
+               <li>当前用户为管理员:</li>
+            <%}%>
             <%if(locals.login != undefined ){%>
-                 <li><%-locals.login%>，您好</li>
+                 <li><%-locals.login%>，您好!</li>
+                 <li>&nbsp;&nbsp;&nbsp;</li>
                  <li><a href="/logout">登出</a></li>
             <% }else{ %>
                 <li><a href="/login">登录</a>|<a href="/register">注册</a></li>
@@ -60,6 +64,11 @@
             <li><a href="/about">关于</a></li>
             <li><a href="/gallery">文章</a></li>
             <li><a href="/contact">联系我</a></li>
+            <li> <!-- 搜索引擎start -->
+                <form action="search" method="post">
+                    <input type="text" name="search"/><input type="submit" value="搜索"/>
+                </form>
+            </li>
         </ul>    	
     </div> <!-- end of templatemo_menu -->
 </div>
@@ -73,9 +82,6 @@
         	
             <div id="templatemo_slider">
                 <div id="featuredslideshow">
-                    <form action="search" method="post">
-                        <input type="text" name="search"/><input type="submit" value="搜索"/>
-                    </form>
                     <ul> 
                         <li><img width="600" height="300" alt="photo one" src="images/slideshow/01.jpg" /></li> 
                         <li><img width="600" height="300" alt="photo two" src="images/slideshow/02.jpg" /></li> 
@@ -139,7 +145,6 @@
         </div> <!-- end of content -->
         
         <div id="templatmeo_sidebar">
-        
         	<div class="sidebar_box">
                 <ul class="ads_125">
                     <li><a href="#"><img src="images/templatemo_ads.jpg" alt="CSS Templates" /></a></li>
@@ -151,11 +156,11 @@
             </div>              
             
             <div class="sidebar_box">
-            	<h4>Categories</h4>
+            	<h4>标签</h4>
                 <ul class="tmo_list">
-                    <li><a href="index.html">Quisque dictum pharetra neque</a></li>
-                    <li><a href="index.html">Praesent sollicitudin mollis leo</a></li>
-                    <li><a href="index.html">Mauris et elit quis mauris aliquet</a></li>
+                    <li><a href="index.html">css</a></li>
+                    <li><a href="index.html">react</a></li>
+                    <li><a href="index.html">vue</a></li>
                     <li><a href="index.html">Donec a purus vel purus sollicitudin</a></li>
                     <li><a href="index.html">Etiam in lorem ac nulla imperdiet</a></li>
                     <li><a href="index.html">Phasellus in justo at lectus</a></li>
@@ -163,7 +168,7 @@
             </div>
             
             <div class="sidebar_box">
-            	<h4>Recent Posts</h4>
+            	<h4>最新文章</h4>
                 <div class="recent_comment_box">
                     <a href="#">Donec mattis egestas sem</a>
                     <p>Mauris in sapien in massa pellentesque viverra. Phasellus in justo at lectus pulvinar ultrices. Validate <a href="http://validator.w3.org/check?uri=referer" rel="nofollow"><strong>XHTML</strong></a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer" rel="nofollow"><strong>CSS</strong></a>.</p>

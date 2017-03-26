@@ -6,6 +6,7 @@ const express = require('express'),
       mysql = require('../module/mysql');
 
 router.get("/",(req,res)=>{
+    res.locals.admin = req.session.admin;
     res.render("index.ejs");
 });
 //博客

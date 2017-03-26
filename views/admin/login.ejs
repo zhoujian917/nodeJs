@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Dashboard - Bootstrap Admin</title>
+    <title>Bootstrap Admin</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />    
@@ -30,7 +30,7 @@
 <div class="navbar navbar-fixed-top">
 	
 	<div class="navbar-inner">
-		
+
 		<div class="container">
 			
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
@@ -61,8 +61,11 @@
 
 
 <div id="login-container">
-	
-	
+
+	<div class="errRes" style="display:none;width:100%;text-align: center;color:red">
+		info::<span class="errInfo">111</span>
+	</div>
+
 	<div id="login-header">
 		
 		<h3>登录</h3>
@@ -129,14 +132,17 @@
 			},
 			success:function(data){
 				if(data.code == 0){
-					alert('success');
+					console.log('test success');
 					window.location.href="/";
 				}else{
 					alert('error');
 				}
 			},
 			error:function(data){
-				alert(data);
+				$("#username").val("");
+				$('#password').val("");
+				$(".errRes").css("display","block");
+				$(".errInfo").html(data.responseText);
 			}
 		})
 	});
