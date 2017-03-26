@@ -23,7 +23,7 @@ app.use(express.static(__dirname+"/public"));
 //cookies 设置密钥
 app.use(cookieParser('zhoujian'));
 //session设置密钥
-app.use(session({secret:'zhoujian'}));
+app.use(session({secret:'node'}));
 
 //cookies session
 app.use(function(req,res,next){
@@ -33,7 +33,7 @@ app.use(function(req,res,next){
     }
     if(res.locals.login && req.session.admin === undefined){
         console.log(req.session.admin);
-        sql('SELECT * FROM user where username = ?',[res.locals.login],(err,data) => {
+        mysql('SELECT * FROM user where username = ?',[res.locals.login],(err,data) => {
             req.session.admin = Number(data[0]['admin']);
             next()
         })
