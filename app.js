@@ -25,18 +25,27 @@ app.use(cookieParser('zhoujian'));
 //session设置密钥
 app.use(session({secret:'zhoujian'}));
 
+//cookies session
 app.use(function(req,res,next){
 
     if(req.cookies['login']){
         res.locals.login = req.cookies.login.name;
     }
-
-    // 继续往下执行
-    next();
+    if(res.locals.login && req.session.admin === undefined){
+        console.log(req.session.admin);
+        sql('SELECT * FROM user where username = ?',[res.locals.login],(err,data) => {
+            req.session.admin = Number(data[0]['admin']);
+            next()
+        })
+    }else{
+        //继续执行
+        next()
+    }
 
 })
 
 app.use("/",require('./router/index'));
+app.use("/admin",require('./router/admin'));
 
 http.createServer(app).listen(8888);
 

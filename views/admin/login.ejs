@@ -133,7 +133,13 @@
 			success:function(data){
 				if(data.code == 0){
 					console.log('test success');
-					window.location.href="/";
+					if(data.data.admin == 1){
+						//管理员 去往后台
+						window.location.href="/admin";
+					}else{
+						//普通用户去往首页
+						window.location.href="/";
+					}
 				}else{
 					alert('error');
 				}

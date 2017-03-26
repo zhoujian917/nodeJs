@@ -30,7 +30,8 @@ router.post("/",(req,res)=>{
                       res.json({
                            code:0,
                            data:{
-                                 result:"登录成功！"
+                                admin:data[0]['admin'],
+                                result:"登录成功！"
                            }
                       });
                   }else{
