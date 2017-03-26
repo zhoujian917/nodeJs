@@ -12,7 +12,16 @@ router.get("/",(req,res)=>{
             return;
         }
         if(data.length > 0){
-            res.render("admin/index.ejs",{data:data});
+            mysql("select count(*) as count from user",(err,data1)=>{
+                if(err){
+                    console.log('user count err');
+                    return;
+                }
+                if(data.length > 0){
+                    res.render("admin/index.ejs",{data:data,count:data1[0]['count']});
+                }
+            });
+
         }else{
             res.render("admin/index.ejs",{data:'抱歉，没有数据'});
         }
