@@ -37,6 +37,19 @@ router.get("/update",(req,res)=>{
     res.render('admin/account.ejs');
 });
 
+//文章标签查询
+router.get("/tag",(req,res)=>{
+    mysql("select * from tag",(err,data)=>{
+        if(err){
+           console.log("select tag err");
+            return;
+        }
+        if(data.length>0){
+            res.render("admin/tag.ejs",{data:data});
+        }
+    });
+});
+
 //删除用户
 router.get("/del",(req,res)=>{
     mysql("delete from user where id = ?",[ req.query.id ],(err,data)=>{
