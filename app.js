@@ -46,6 +46,7 @@ app.use(function(req,res,next){
 
 app.use("/",require('./router/index'));
 app.use("/admin",require('./router/admin'));
+app.use("/artical",require('./router/artical'));
 
 http.createServer(app).listen(8888);
 
