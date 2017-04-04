@@ -100,6 +100,20 @@
 					<i class="icon-home"></i>
 					标签信息
 				</h1>
+				<!--  add tag  -->
+				<div class="row">
+					<span class="span4">
+					添加新标签：<input type="text" class="addTag" id="tagname" maxlength="15"/>
+					</span>
+					<span class="span1">
+						<button class="btn btn-small btn-warning" id="sub">
+							<i class="icon-ok"></i>
+						</button>
+					</span>
+					<span class="span2 errinfo" style="color:red">
+
+					</span>
+				</div>
 				<div class="widget widget-table">
 
 					<div class="widget-header">
@@ -127,10 +141,7 @@
 								<td><%=data[i]['tagname']%></td>
 								<td>可用</td>
 								<td class="action-td">
-									<a href="/admin/update?id=<%=data[i]['id']%>" class="btn btn-small btn-warning">
-										<i class="icon-ok"></i>
-									</a>
-									<a href="/admin/del?id=<%=data[i]['id']%>" class="btn btn-small">
+									<a href="/admin/deltag?id=<%=data[i]['id']%>" class="btn btn-small">
 										<i class="icon-remove"></i>
 									</a>
 								</td>
@@ -164,8 +175,34 @@
 
 </div> <!-- /footer -->
 
-<script src="script/jquery-1.7.2.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script src="../js/jquery.min.js"></script>
 
+<script>
+	$("#sub").click(function(){
+		console.log($("#tagname").val());
+		$.ajax({
+			url:'/admin/addTag',
+			type:'post',
+			dataType:'json',
+			data:{
+				tagname:$("#tagname").val(),
+			},
+			success:function(data){
+				if(data.code == 0){
+					console.log('test success');
+					$("#tagname").val("");
+					$(".errinfo").html("success");
+				}else{
+					alert('error');
+				}
+			},
+			error:function(data){
+				$("#tagname").val("");
+				$(".errRes").css("display","block");
+				$(".errinfo").html(data.responseText);
+			}
+		})
+	});
+</script>
 </body>
 </html>

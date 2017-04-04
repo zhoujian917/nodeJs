@@ -542,3 +542,31 @@ em { color: #e55822; }
 }
 
 /* end of copyright */
+
+.limitRec{
+	width:100%;
+	height:78px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.btn-info{
+	background:#f4703a;
+	border-color:#f4703a;
+	color:#fff;
+}
+.rt{
+	float:right;
+}
+.btn-sub{
+	width:80px;
+	height:30px;
+	line-height: 30px;
+	display:block;
+	text-align: center;
+	margin:0 auto;
+	border:none;
+	outline: none;
+	background:#f4703a;
+	color:#fff;
+	border-radius: 2px;
+}

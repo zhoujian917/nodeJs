@@ -3,7 +3,8 @@
  */
 const express = require('express'),
       router = express.Router(),
-    mysql = require("../module/mysql");
+    mysql = require("../module/mysql"),
+    fs = require('fs');
 
 router.get("/",(req,res)=>{
     mysql("select * from user where admin = 0",(err,data)=>{
@@ -49,12 +50,26 @@ router.get("/tag",(req,res)=>{
         }
     });
 });
+//删除tag
+router.get("/deltag",(req,res)=>{
+    mysql("delete from tag where id = ?",[ req.query.id ],(err,data)=>{
+        if(err){
+            console.log("tag err");
+            return;
+        }
+        if(data.affectedRows == 1){
+            res.redirect("tag");
+        }else{
+            res.send("删除出错啦！");
+        }
+    });
+});
 
 //删除用户
 router.get("/del",(req,res)=>{
     mysql("delete from user where id = ?",[ req.query.id ],(err,data)=>{
         if(err){
-            console.log("updata user err");
+            console.log("  user err");
             return;
         }
         if(data.affectedRows == 1){
@@ -64,5 +79,26 @@ router.get("/del",(req,res)=>{
         }
     });
 });
+router.get("/views",(req,res)=>{
+    let dir = fs.readdirSync(`${process.cwd()}`/+'views');
+    res.render('views.ejs',{data:dir});
+});
+//添加文章标签
+router.post("/addTag",(req,res)=>{
+    console.log(req.body);
+    const sql="insert into tag values (0,?,?)";
+    mysql(sql,[req.body['tagname'],0],(err,data)=>{
+        if(err){
+            res.locals.addTagRes = "err";
+           console.log("add tag err");
+        }
+        if(data.affectedRows == 1){
+            res.locals.addTagRes = "success";
+        }else{
+            res.locals.addTagRes = "fails";
+        }
+        res.redirect("tag");
+    });
 
+})
 module.exports = router;

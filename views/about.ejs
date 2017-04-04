@@ -20,12 +20,17 @@
 
 <div id="templatemo_top_wrapper">
 	<div id="templatemo_top">
-    	<ul id="social_box">
-            <li><a href="#"><img src="images/facebook.png" alt="facebook" /></a></li>
-            <li><a href="#"><img src="images/twitter.png" alt="twitter" /></a></li>
-            <li><a href="#"><img src="images/linkedin.png" alt="linkin" /></a></li>
-            <li><a href="#"><img src="images/technorati.png" alt="technorati" /></a></li>
-            <li><a href="#"><img src="images/myspace.png" alt="myspace" /></a></li>                
+        <ul id="social_box">
+            <%if(locals.admin == 1){%>
+            <li>当前用户为管理员:</li>
+            <%}%>
+            <%if(locals.login != undefined ){%>
+            <li><%-locals.login%>，您好!</li>
+            <li>&nbsp;&nbsp;&nbsp;</li>
+            <li><a href="/logout">登出</a></li>
+            <% }else{ %>
+            <li><a href="/login">登录</a>|<a href="/register">注册</a></li>
+            <%}%>
         </ul>
     </div>
 </div>
@@ -43,11 +48,15 @@
 <div id="templatemo_menu_wrapper">
 	<div id="templatemo_menu">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about" class="current">About</a></li>
-            <li><a href="/gallery">Gallery</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>    	
+            <li><a href="/">主页</a></li>
+            <li><a href="/gallery">文章</a></li>
+            <li><a href="/about"  class="current">关于</a></li>
+            <li class="rt"> <!-- 搜索引擎start -->
+                <form action="/search" method="post">
+                    <input type="text" name="search"/><input type="submit" class="btn-info" value="搜索"/>
+                </form>
+            </li>
+        </ul>
     </div> <!-- end of templatemo_menu -->
 </div>
 
@@ -61,58 +70,44 @@
             <div class="content_box">
                 <h2>关于我</h2>
                 <div class="image_wrapper image_fl"><img src="images/templatemo_image_01.jpg" alt="image" /></div>
-                <p><em>来自东北长春的90后草根女</em></p>
+                <p><em>来自长春的90后草根女</em></p>
                 <p align="justify">
                     天蝎座，很多时候觉得自己对待任何事都很执着，一旦定了目标，就会不达目标不罢休，永不退缩！ 面对爱情也是一样，当真正遇到自己喜欢的一个人，会不顾一切去追。
                 </p>
                 
               <div class="cleaner_h20"></div>
-                <div class="btn_more image_fr"><a href="#">Read more</a></div>
+
             </div>
-            
-            <h2>Web Developments</h2>
-			<p>In ac libero urna. Suspendisse sed odio ut mi auctor blandit. Duis luctus nulla metus, a vulputate mauris. Integer sed nisi sapien, ut gravida mauris. Nam et tellus libero. Cras purus libero, dapibus nec rutrum in, dapibus nec risus. Ut interdum mi sit amet magna feugiat auctor.</p>
+            <h2>联系我</h2>
+
             <div class="cleaner_h40"></div>
-			
-            <div class="service_box">
-            	
-                <img src="images/onebit_15.png" alt="service 1" />
-                <div class="sb_right">
-                	<h4>Online Marketing</h4>
-                    <p>Credit goes to <a href="http://www.icojoy.com/articles/46/" target="_blank">Icojoy.com</a> for icons.   Suspendisse venenatis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi dapibus dolor sit amet metus suscipit iaculis. Quisque at nulla eu elit adipiscing tempor.</p>
-                
-                    <ul class="tmo_list">
-               	    <li>Vestibulum pretium convallis diam sit amet </li>
-                        <li>Donec consequat, lacus eget accumsan volutpat</li>
-                        <li>Fusce sem nulla, rutrum ac suscipit eget vitae</li>
-                       
-                    </ul>
-                </div>
-                <div class="cleaner"></div>
-                <div class="btn_more image_fr"><a href="#">Read more <span>&raquo;</span></a></div>
-                <div class="cleaner"></div>
+
+            <div id="contact_form">
+
+                <form method="post" name="contact" action="#">
+
+                    <div class="col_w310 float_l">
+
+                        <label for="author">姓名:</label> <input type="text" value="周健" name="author"disabled />
+                        <div class="cleaner_h10"></div>
+
+                        <label for="author">QQ:</label> <input type="text" value="991981792" name="author"disabled />
+                        <div class="cleaner_h10"></div>
+
+                        <label for="email">邮箱:</label> <input type="text" value="zhoujian_xfys@163.com" name="email" disabled />
+                        <div class="cleaner_h10"></div>
+
+                        <label for="phone">电话:</label> <input type="text" name="phone" id="phone" value="1572667****" disabled/>
+                        <div class="cleaner_h10"></div>
+                    </div>
+
+
+
+                </form>
+
             </div>
-            
-             <div class="service_box">
-            	
-                <img src="images/onebit_16.png" alt="service 2" />
-                <div class="sb_right">
-                	<h4>Product Growth</h4>
-                    <p>Vestibulum ullamcorper ipsum nec augue. Vestibulum auctor odio eget ante. Nunc commodo, magna pharetra semper vehicula, dui ligula feugiat elit, et euismod nunc orci ut libero. Etiam sodales massa vel metus. Mauris et elit quis mauris aliquet luctus.
-</p>
-                
-                    <ul class="tmo_list">
-                        <li>Praesent lacus metus, aliquet sit </li>
-                        <li>Nunc eget turpis mattis nisi auctor</li>
-                        <li>Vestibulum pharetra tortor vitae velit </li>
-                       
-                    </ul>
-                </div>
-                <div class="cleaner"></div>
-                <div class="btn_more image_fr"><a href="#">Read more <span>&raquo;</span></a></div>
-                <div class="cleaner"></div>
-            </div>
-        
+            <div class="cleaner"></div>
+
         </div> <!-- end of content -->
         
         

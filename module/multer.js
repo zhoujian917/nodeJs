@@ -4,16 +4,16 @@ const multer = require('multer'),
 //  上传路径处理 上传之后重命名
 let storage = multer.diskStorage({
     // 上传路径处理
-    destination: path.join(process.cwd(),'public/img'),
+    destination: path.join(process.cwd(),'public/upload'),
     filename:function (req,file,callback){
-        console.log(file);
+        console.log("fliename:::"+file);
         let filename = (file.originalname).split(".");
         callback(null, `${Date.now()}.${filename[filename.length-1]}` )
     }
 });
 let fileFilter = function (req,file,cb){
     // 当设置这个判断后  没允许的 && 没设置的类型 拒绝
-    if(file.mimetype === 'image/gif'){
+    if(file.mimetype === 'png/jpg'){
         cb(null,true)
     }else{
         req.upload = '123';
@@ -25,6 +25,6 @@ let upload = multer({
     limits:{
         // 限制上传文件的大小
     },
-    fileFilter:fileFilter
+   // fileFilter:fileFilter
 });
 module.exports = upload;

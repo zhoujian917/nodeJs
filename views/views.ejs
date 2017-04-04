@@ -1,0 +1,14 @@
+<html>
+<head>
+
+</head>
+<body>
+<%for(var i in data){%>
+    <%if(data[i].includes('.')){%>
+        <p data-type="1"><%=data[i]%></p>
+    <%}else{%>
+        <p data-type="2"><%=data[i]%></p>
+    <%}%>
+<%}%>
+</body>
+</html>

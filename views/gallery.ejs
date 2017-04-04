@@ -39,12 +39,17 @@ $(document).ready(function() {
 
 <div id="templatemo_top_wrapper">
 	<div id="templatemo_top">
-    	<ul id="social_box">
-            <li><a href="#"><img src="images/facebook.png" alt="facebook" /></a></li>
-            <li><a href="#"><img src="images/twitter.png" alt="twitter" /></a></li>
-            <li><a href="#"><img src="images/linkedin.png" alt="linkin" /></a></li>
-            <li><a href="#"><img src="images/technorati.png" alt="technorati" /></a></li>
-            <li><a href="#"><img src="images/myspace.png" alt="myspace" /></a></li>                
+        <ul id="social_box">
+            <%if(locals.admin == 1){%>
+            <li>当前用户为管理员:</li>
+            <%}%>
+            <%if(locals.login != undefined ){%>
+            <li><%-locals.login%>，您好!</li>
+            <li>&nbsp;&nbsp;&nbsp;</li>
+            <li><a href="/logout">登出</a></li>
+            <% }else{ %>
+            <li><a href="/login">登录</a>|<a href="/register">注册</a></li>
+            <%}%>
         </ul>
     </div>
 </div>
@@ -62,10 +67,14 @@ $(document).ready(function() {
 <div id="templatemo_menu_wrapper">
 	<div id="templatemo_menu">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/gallery" class="current">Gallery</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/">主页</a></li>
+            <li><a href="/gallery"  class="current">文章</a></li>
+            <li><a href="/about">关于</a></li>
+            <li class="rt"> <!-- 搜索引擎start -->
+                <form action="/search" method="post">
+                    <input type="text" name="search"/><input type="submit" class="btn-info" value="搜索"/>
+                </form>
+            </li>
         </ul>    	
     </div> <!-- end of templatemo_menu -->
 </div>
@@ -77,65 +86,27 @@ $(document).ready(function() {
     
     	<div id="templatemo_content">
         	
-            <h2>Web Gallery</h2>
-                    <p><em>Etiam fringilla vestibulum nulla. Suspendisse venenatis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi dapibus dolor sit amet metus suscipit iaculis. Quisque at nulla eu elit adipiscing tempor. Nunc at lectus.</em></p>
-                    
+            <h2>文章列表</h2>
+
                     <div class="cleaner_h40"></div>
                 
                 	<div id="gallery">
                         <ul>
-                            <li>
-                                <div class="left">
-                                    <a href="images/gallery/image_01_b.jpg" class="pirobox" title="Project 1"><img src="images/gallery/image_01.jpg" alt="" /></a>
-                                </div>
-                                <div class="right">
-                                    <h5>Web Hosting</h5>
-                                    <p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus egestas diam quis dapibus.</em></p>
-                                    <p>Quisque sed mauris velit, a congue lorem. Aliquam quis mi sed libero dapibus iaculis a et mi. Egestas diam quis dapibus. Quisque sed mauris velit, a congue lorem. </p>
-                                    <div class="btn_more"><a href="#">Visit site <span>&raquo;</span></a> </div>
-                                </div>
-                                <div class="cleaner"></div>
-                            </li>
-                            
-                            <li>
-                                <div class="left">
-                                    <a href="images/gallery/image_02_b.jpg" class="pirobox" title="Project 1"><img src="images/gallery/image_02.jpg" alt="" /></a>
-                                </div>
-                              <div class="right">
-                                  <h5>Solutions</h5>
-                                  <p><em>Cras id tortor nisl. Nullam ante diam, interdum sit amet. Velit justo sodales lectus, ac porta nunc eros.</em></p>
-                                  <p>Maecenas eros ipsum, tincidunt vitae ultricies id, blandit quis nulla. Fusce sem nulla, rutrum ac suscipit eget, commodo vitae est. In at orci arcu, .</p>
-                                   <div class="btn_more"><a href="#">Visit site <span>&raquo;</span></a> </div>
-                              </div>
-                                <div class="cleaner"></div>
-                            </li>
-                            
-                            <li>
-                                <div class="left">
-                                    <a href="images/gallery/image_03_b.jpg" class="pirobox" title="Project 1"><img src="images/gallery/image_03.jpg" alt="" /></a>
-                                </div>
-                                <div class="right">
-                                    <h5>Personal Site</h5>
-                                  <p><em>Integer consectetur enim eget diam tincidunt vehicula. Cras id tortor nisl. Nullam ante diam.</em></p>
-                                  <p>Sodales nec, mollis lobortis sapien. Vestibulum pharetra tortor vitae velit pretium rhoncus integer consectetur enim eget.</p>
-                                   <div class="btn_more"><a href="#">Visit site <span>&raquo;</span></a> </div>
-                              </div>
-                                 <div class="cleaner"></div>
-                            </li>
-                            
-                            <li>
-                                <div class="left">
-                                    <a href="images/gallery/image_04_b.jpg" class="pirobox" title="Project 1"><img src="images/gallery/image_04.jpg" alt="" /></a>
-                                </div>
-                                <div class="right">
-                                    <h5>Car Online</h5>
-                                    <p><em>Pellentesque tempus sapien nec sem commodo ullamcorper. Aenean neque.</em></p>
-                                    <p>Ut volutpat erat nec mauris vestibulum sit amet pharetra urna faucibus. Ut magna orci, varius eget ullamcorper ac, sodales id leof usce venenatis .</p>
-                                   <div class="btn_more"><a href="#">Visit site <span>&raquo;</span></a> </div>
-                                </div>
-                                <div class="cleaner"></div>
-                            </li>
-                            
+                            <%if(locals.res=='success'){%>
+                                <%for(var i = 0;i<data.length;i++){%>
+                                    <li>
+                                        <div class="left">
+                                            <a href="<%=data[i]['photo']%>" class="pirobox" title="Project 1"><img src="<%=data[i]['photo']%>" alt="" /></a>
+                                        </div>
+                                        <div class="right">
+                                            <h5><%=data[i]['title']%></h5>
+                                             <div><%-data[i]['content']%></div>
+                                            <div class="btn_more"><a href="/detail?id=<%=data[i]['id']%>">阅读全文<span>&raquo;</span></a> </div>
+                                        </div>
+                                        <div class="cleaner"></div>
+                                    </li>
+                                <%}%>
+                            <%}%>
                         </ul>
                     
                     </div>

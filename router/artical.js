@@ -19,25 +19,26 @@ router.get("/",(req,res)=>{
 
 });
 
-//                     upload.single 用来接收1个文件
-router.post('/article',upload.single('imgTo'),(req,res) => {
+//upload.single 用来接收1个文件
+router.post('/',upload.single('imgTo'),(req,res) => {
     console.log(req.body);
+    const tag = req.body.tag.join(','),
+        title = req.body.title,
+        author = req.body.author,
+        content = req.body.editorValue,
+        img = '/upload/' + req.file.filename,
+        time = new Date().toLocaleString().substring(0,10);
+    console.log(tag);
     console.log(req.upload); // 限制上传 {}
-   /* let title = req.body.title,
-     tag = req.body.tag,
-     author = req.body.author,
-     content = req.body.content,
-     img = '/img/' + req.file.filename,
-     time = new Date().toLocaleString().substring(0,10);
-     sql('INSERT INTO article (id,title,tag,author,content,time,img) VALUES (0,?,?,?,?,?,?)',
-     [title,tag,author,content,time,img],(err,data) => {
+     mysql('insert into artical values (0,?,?,?,?,?,?)',
+     [title,tag,time,author,img,content],(err,data) => {
      if(err){
-     res.send('保存失败');
-     return
+         res.send('保存失败');
+          return
      }
      res.json({
      result:'保存成功'
      })
-     });*/
+     });
 });
 module.exports = router;

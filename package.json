@@ -20,11 +20,13 @@
   },
   "homepage": "https://github.com/zhoujian917/nodeJs#readme",
   "dependencies": {
+    "body-parser": "latest",
+    "cookie-parser": "latest",
+    "ejs": "latest",
     "express": "^4.15.2",
-    "mysql":"latest",
-    "ejs":"latest",
-    "body-parser":"latest",
-    "cookie-parser":"latest",
-    "express-session":"latest"
+    "express-session": "latest",
+    "multer": "^1.3.0",
+    "mysql": "latest",
+    "socket.io":"latest"
   }
 }

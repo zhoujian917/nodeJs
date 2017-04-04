@@ -13,6 +13,7 @@ module.exports = function(sql,params,cb) {
     })
     config.connect();
     config.query(sql,params, (err, data)=> {
+        console.log(params);
         console.log("sql:::"+sql);
         cb&&cb(err,data);
     });
