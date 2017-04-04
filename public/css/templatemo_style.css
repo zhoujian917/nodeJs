@@ -554,6 +554,7 @@ em { color: #e55822; }
 	border-color:#f4703a;
 	color:#fff;
 }
+.lt{float:left;}
 .rt{
 	float:right;
 }
@@ -569,4 +570,14 @@ em { color: #e55822; }
 	background:#f4703a;
 	color:#fff;
 	border-radius: 2px;
+}
+.com-list{
+	border-bottom:1px dotted #c0c0c0;
+	padding-bottom:15px;
+}
+.pl-img,.pl-img img{
+	width:30px;
+	height:30px;
+	vertical-align: middle;
+	margin-right:20px;
 }

@@ -115,14 +115,18 @@
 
                     <h2><a href="item.html?aid=<%=data[i]['id']%>"><%=data[i]['title']%></a></h2>
 
-                    <div class="post_meta"><strong>发表日期:</strong> <%=data[i]['time']%> | <strong>作者:</strong><%=data[i]['uid']%> | <a href="blog_post">128 评论</a></div>
+                    <div class="post_meta">
+                        <strong>发表日期:</strong> <%=data[i]['time']%> |
+                        <strong>作者:</strong><%=data[i]['uid']%> |
+                        <a href="blog_post"><%=arr.i%>评论</a>
+                    </div>
                     <a href="#"><img src="<%=data[i]['photo']%>" alt="image" /></a>
                     <%-data[i]['content']%>
                     <div class="cleaner_h20"></div>
                     <div class="category">
                         <strong>标签: </strong>
                         <%for(var j = 0;j<data[i]['tid'].split(',').length;j++ ){%>
-                            <a href="#"><%=data[i]['tid'].split(',')[j]%></a>
+                            <a href="/search?id=<%=data[i]['tid'].split(',')[j]%>"><%=data[i]['tid'].split(',')[j]%></a>
                         <%}%>
                     </div>
                     <div class="btn_more float_r"><a href="/detail?id=<%=data[i]['id']%>">阅读全文 <span>&raquo;</span></a></div>

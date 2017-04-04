@@ -77,9 +77,9 @@
 
                 <div id="gallery">
                     <%if(locals.res=='success'){%>
-                    <h1><%=data[0]['title']%></h1>
+                    <h1 style="text-align: center"><%=data[0]['title']%></h1>
                     <p>发表时间：<%=data[0]['time']%>|作者：<%=data[0]['uid']%></p>
-                    <div class="left">
+                    <div class="imgCss">
                         <a href="<%=data[0]['photo']%>" class="pirobox" title="Project 1"><img src="<%=data[0]['photo']%>" alt="" /></a>
                     </div>
                     <div class="right">
@@ -89,11 +89,28 @@
                     <div class="pinglun">
                         <form action="pinglun" method="post">
                             <input type="hidden" name="aid" value="<%=data[0]['id']%>"/>
-                            <%-locals.res%>
-                            <textarea rows="3" style="width:100%"></textarea>
+                            <textarea rows="3" style="width:100%" name="content"></textarea>
                             <br/> <br/>
                             <input type="submit" value="提交" class="btn-sub"/>
                         </form>
+                        <div class="cleaner_h20"></div>
+                        <h3>评论列表：</h3>
+                        <div class="pl-list">
+                            <%if(locals.pl==1){%>
+                                <%for(var p = 0;p<dataCom.length;p++){%>
+                                    <div class="com-list">
+                                        <p>日期：<%=dataCom[p]['time']%>|昵称：<%-dataCom[p]['user']%></p>
+                                       <div>
+                                         <div  class="lt pl-img"><img src="/images/pl.png"/></div>
+                                          <div class="lt"> <%-dataCom[p]['content']%></div>
+                                           <div class="cleaner"></div>
+                                       </div>
+                                    </div>
+                                <%}%>
+                            <%}else{%>
+                                <p>暂无评论</p>
+                            <%}%>
+                        </div>
                     </div>
 
                     <%}%>
@@ -199,10 +216,6 @@
         Copyright 漏 2048 <a href="#">Your Company Name</a> <!-- Credit: www.templatemo.com -->
     </div>
 </div>
-<!-- templatemo 298 neo blog -->
-<!-- 
-Neo Blog Template 
-http://www.templatemo.com/preview/templatemo_298_neo_blog 
--->
+
 </body>
 </html>
